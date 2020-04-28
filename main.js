@@ -18,18 +18,24 @@ $(document).ready(function() {
 
 	// Inizio chiamata AJAX
 	$.ajax({
+		// Chiamo l'API
 		url: musicAPI,
 		method: 'GET',
 		success: function(data) {
+			// Definisco una variabile per il response
 			var cds = data.response;
+			// Ciclo per definire gli oggetti di data e stamparli nel markup
 			for ( var i = 0; i < cds.length; i++ ) {
+				// Oggetti di data
 				var item = cds[i];
+				// Li copio nel nuovo oggetto
 				var cdsToPrint = {
 					myPoster: item.poster,
 					myTitle: item.title,
 					myAuthor: item.author,
 					myYear: item.year
 				}
+				// Stampo i nuovi oggetti nel markup
 				var html = template(cdsToPrint);
 				cdsContainer.append(html);
 			}
@@ -37,6 +43,6 @@ $(document).ready(function() {
 		error: function() {
 			console.log('Si è verificato un errore');
 		}
-	});
+	}); // Fine chiamata AJAX
 
-});
+}); // Fine document ready
