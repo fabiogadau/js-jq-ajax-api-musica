@@ -7,5 +7,25 @@ Bonus: Creare una select con i seguenti generi: pop, rock, metal e jazz. In base
 */
 
 $(document).ready(function() {
-	//Code
+	
+	// Referenze
+	var musicAPI = 'https://flynn.boolean.careers/exercises/api/array/music';
+	var cdsContainer = $('.cds-container');
+
+	// Init Handlebars
+	var source = $('#cd-template').html();
+	var template = Handlebars.compile(source);
+
+	// Inizio chiamata AJAX
+	$.ajax({
+		url: musicAPI,
+		method: 'GET',
+		success: function(data) {
+			
+		},
+		error: function() {
+			console.log('Si è verificato un errore');
+		}
+	});
+
 });
