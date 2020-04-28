@@ -21,7 +21,18 @@ $(document).ready(function() {
 		url: musicAPI,
 		method: 'GET',
 		success: function(data) {
-			
+			var cds = data.response;
+			for ( var i = 0; i < cds.length; i++ ) {
+				var item = cds[i];
+				var cdsToPrint = {
+					myPoster: item.poster,
+					myTitle: item.title,
+					myAuthor: item.author,
+					myYear: item.year
+				}
+				var html = template(cdsToPrint);
+				cdsContainer.append(html);
+			}
 		},
 		error: function() {
 			console.log('Si è verificato un errore');
