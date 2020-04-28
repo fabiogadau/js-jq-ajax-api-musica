@@ -22,22 +22,27 @@ $(document).ready(function() {
 		url: musicAPI,
 		method: 'GET',
 		success: function(data) {
-			// Definisco una variabile per il response
+			// Definisco una variabile per il response di data
 			var cds = data.response;
+			// Definisco una variabile per il success di data
+			var dataStable = data.success;
 			// Ciclo per definire gli oggetti di data e stamparli nel markup
 			for ( var i = 0; i < cds.length; i++ ) {
 				// Oggetti di data
 				var item = cds[i];
-				// Li copio nel nuovo oggetto
-				var cdsToPrint = {
-					myPoster: item.poster,
-					myTitle: item.title,
-					myAuthor: item.author,
-					myYear: item.year
+				// Validazione
+				if ( dataStable == true ) {
+					// Copio nel nuovo oggetto
+					var cdsToPrint = {
+						myPoster: item.poster,
+						myTitle: item.title,
+						myAuthor: item.author,
+						myYear: item.year
+					}
+					// Stampo i nuovi oggetti nel markup
+					var html = template(cdsToPrint);
+					cdsContainer.append(html);
 				}
-				// Stampo i nuovi oggetti nel markup
-				var html = template(cdsToPrint);
-				cdsContainer.append(html);
 			}
 		},
 		error: function() {
