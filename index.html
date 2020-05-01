@@ -15,10 +15,20 @@
             </div>
         </header>
 
+        <div class="container">
+            <select name="music-genres" id="genres">
+                <option value="all">All</option>
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="metal">Metal</option>
+                <option value="jazz">Jazz</option>
+            </select>
+        </div>
+
         <div class="cds-container container">
             <!-- Template Handlebars-->
             <script id="cd-template" type="text/x-handlebars-template">
-                <div class="cd">
+                <div class="cd {{ genres }}">
                     <img src="{{ myPoster }}" alt="">
                     <h3>{{ myTitle }}</h3>
                     <span class="author">{{ myAuthor }}</span>

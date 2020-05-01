@@ -11,6 +11,7 @@ $(document).ready(function() {
 	// Referenze
 	var musicAPI = 'https://flynn.boolean.careers/exercises/api/array/music';
 	var cdsContainer = $('.cds-container');
+	var musicGenres = $('#genres');
 
 	// Init Handlebars
 	var source = $('#cd-template').html();
@@ -37,7 +38,8 @@ $(document).ready(function() {
 						myPoster: item.poster,
 						myTitle: item.title,
 						myAuthor: item.author,
-						myYear: item.year
+						myYear: item.year,
+						genres: item.genre.toLowerCase()
 					}
 					// Stampo i nuovi oggetti nel markup
 					var html = template(cdsToPrint);
@@ -49,5 +51,17 @@ $(document).ready(function() {
 			console.log('Si è verificato un errore');
 		}
 	}); // Fine chiamata AJAX
+
+	// Selezione genere musicale
+	musicGenres.change(function(){
+		var genre = $(this).val();
+		if ( genre === 'all' ) {
+			$('.cd').show();
+		}
+		else {
+			$('.cd').hide();
+			$('.cd.' + genre).show();
+		}
+	});
 
 }); // Fine document ready
